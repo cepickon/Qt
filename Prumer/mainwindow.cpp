@@ -13,6 +13,7 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 void MainWindow::prumer(){
+    ui->labelVysledek->setStyleSheet("color: black;");
     QString input = ui->lineEditCisla->text();
     QStringList list = input.split(',');
     double sum = 0;
@@ -20,5 +21,8 @@ void MainWindow::prumer(){
         sum += list [i].toInt();
     }
     double vysledek = sum / list.size();
+    if (vysledek > 4){
+        ui->labelVysledek->setStyleSheet("color: red;");
+    }
     ui->labelVysledek->setText(QString::number(vysledek));
 }
