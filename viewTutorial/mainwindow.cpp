@@ -60,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
         mModelStandardItem->appendRow(row);
     }
     ui->tableView_2->setModel(mModelStandardItem);
+    ui->tableView_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
     mModelStandardItem->sort(0);
     QStringList headersNames1;
     headersNames1.append("prvy");
@@ -71,6 +72,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView_2->verticalHeader()->setVisible(false);
     ui->tableView_2->setModel(mModelStandardItem);
     connect(ui->tableView_2, &QTableView::clicked, this, &MainWindow::biggerNumber);
+    connect(ui->tableView_2, &QTableView::doubleClicked, this, &MainWindow::onListViewItemClicked2);
+    connect(ui->tableView_2, &QTableView::doubleClicked,this, &MainWindow::doubleColumn);
+    connect(ui->tableView_2, &QTableView::doubleClicked,this, &MainWindow::doubleRow);
 
     ui->comboBox->addItem("CZK");
     ui->comboBox->addItem("EUR");
@@ -90,6 +94,12 @@ void MainWindow::onListViewItemClicked(const QModelIndex &index){
         }
     }
     ui->labelInfo->setText(result);
+}
+void MainWindow::onListViewItemClicked2(const QModelIndex &index){
+    QStandardItem *item = mModelStandardItem->itemFromIndex(index);
+    int value = item->text().toInt();
+    value =(value - 1) * 2;
+    item->setText(QString::number(value));
 }
 void MainWindow::biggerNumber(const QModelIndex &index){
     if (!index.isValid()){
@@ -117,5 +127,23 @@ void MainWindow::zmena(){
                 }
             }
         }
+    }
+}
+void MainWindow::doubleColumn(const QModelIndex &index){
+    int sloupec = index.column();
+    QStandardItemModel *model = qobject_cast<QStandardItemModel *>(ui->tableView_2->model());
+    for (int radek = 0; radek < model->rowCount(); ++radek) {
+        QStandardItem *item = model->item(radek, sloupec);
+        int hodnota = item->text().toInt();
+        item->setText(QString::number(hodnota * 2));
+    }
+}
+void MainWindow::doubleRow(const QModelIndex &index){
+    int radek = index.row();
+    QStandardItemModel *model = qobject_cast<QStandardItemModel *>(ui->tableView_2->model());
+    for (int sloupec = 0; sloupec < model->columnCount(); ++sloupec) {
+        QStandardItem *item = model->item(radek, sloupec);
+        int hodnota = item->text().toInt();
+        item->setText(QString::number(hodnota * 2));
     }
 }

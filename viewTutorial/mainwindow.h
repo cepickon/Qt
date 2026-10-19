@@ -19,8 +19,11 @@ public:
 
 public slots:
     void onListViewItemClicked(const QModelIndex &index);
+    void onListViewItemClicked2(const QModelIndex &index);
     void biggerNumber(const QModelIndex &index);
     void zmena();
+    void doubleColumn(const QModelIndex &index);
+    void doubleRow(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
