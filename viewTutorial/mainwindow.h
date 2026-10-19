@@ -22,7 +22,7 @@ public slots:
     void onListViewItemClicked2(const QModelIndex &index);
     void biggerNumber(const QModelIndex &index);
     void zmena();
-    void doubleColumn(const QModelIndex &index);
+    void doubleColumn(int sloupec);
     void doubleRow(const QModelIndex &index);
 
 private:

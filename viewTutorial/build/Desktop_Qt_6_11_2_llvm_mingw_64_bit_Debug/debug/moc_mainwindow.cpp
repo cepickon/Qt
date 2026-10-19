@@ -47,6 +47,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "biggerNumber",
         "zmena",
         "doubleColumn",
+        "sloupec",
         "doubleRow"
     };
 
@@ -66,11 +67,11 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         // Slot 'zmena'
         QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'doubleColumn'
-        QtMocHelpers::SlotData<void(const QModelIndex &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 3, 4 },
+        QtMocHelpers::SlotData<void(int)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 9 },
         }}),
         // Slot 'doubleRow'
-        QtMocHelpers::SlotData<void(const QModelIndex &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
+        QtMocHelpers::SlotData<void(const QModelIndex &)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
             { 0x80000000 | 3, 4 },
         }}),
     };
@@ -100,7 +101,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->onListViewItemClicked2((*reinterpret_cast<std::add_pointer_t<QModelIndex>>(_a[1]))); break;
         case 2: _t->biggerNumber((*reinterpret_cast<std::add_pointer_t<QModelIndex>>(_a[1]))); break;
         case 3: _t->zmena(); break;
-        case 4: _t->doubleColumn((*reinterpret_cast<std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 4: _t->doubleColumn((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->doubleRow((*reinterpret_cast<std::add_pointer_t<QModelIndex>>(_a[1]))); break;
         default: ;
         }

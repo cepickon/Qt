@@ -73,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView_2->setModel(mModelStandardItem);
     connect(ui->tableView_2, &QTableView::clicked, this, &MainWindow::biggerNumber);
     connect(ui->tableView_2, &QTableView::doubleClicked, this, &MainWindow::onListViewItemClicked2);
-    connect(ui->tableView_2, &QTableView::doubleClicked,this, &MainWindow::doubleColumn);
+    connect(ui->tableView_2->horizontalHeader(), &QHeaderView::sectionDoubleClicked, this, &MainWindow::doubleColumn);
     connect(ui->tableView_2, &QTableView::doubleClicked,this, &MainWindow::doubleRow);
 
     ui->comboBox->addItem("CZK");
@@ -129,8 +129,7 @@ void MainWindow::zmena(){
         }
     }
 }
-void MainWindow::doubleColumn(const QModelIndex &index){
-    int sloupec = index.column();
+void MainWindow::doubleColumn(int sloupec){
     QStandardItemModel *model = qobject_cast<QStandardItemModel *>(ui->tableView_2->model());
     for (int radek = 0; radek < model->rowCount(); ++radek) {
         QStandardItem *item = model->item(radek, sloupec);
