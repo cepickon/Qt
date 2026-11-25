@@ -31,9 +31,8 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 void MainWindow::lichSloupec(QStandardItem *itemChanged){
-    int number = itemChanged->data(Qt::DisplayRole).toInt();
     int sum = 0;
-    if (number > 0) {
+    if (itemChanged->data(Qt::DisplayRole).toInt() > 0) {
         int column = itemChanged->column();
         for (int j = 0; j < mModelStandardItem->rowCount(); ++j) {
             QStandardItem *item = mModelStandardItem->item(j, column);
